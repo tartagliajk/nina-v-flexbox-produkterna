@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+
+/* hur lång animationen ska ta, hur många karaktärer det är */
+:root {
+    --bg-color: black;
+    --typewriterSpeed: 5s;
+    --typewriterCharacters: 40;
+}
+
+/* None så att de inte är någon länk färg*/
+a{
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    font-family: 'Fira Mono', monospace;
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    background: #000;
+}
+
+/* font storleken förhållande till andra saker dvs om man hade lagt till en <p></p> under*/
+h1 {
+    font-size: clamp(1rem, 3vw + 1rem, 4rem);
+    position: relative;
+    font-family: 'Fira Mono', monospace;
+    color: #fff;
+    font-size: 40px;
+    position: relative;
+    width: max-content;
+}
+  
+h1::before,
+h1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+h1::before {
+    background: black;
+    animation: typewriter var(--typewriterSpeed)
+      steps(var(--typewriterCharacters)) 1s forwards;
+}
+
+/* type saken i slutet och att den är vitt och att den blinkar varje 750 ms och pågår för evigt*/
+h1::after {
+    width: 0.125em;
+    background: white;
+    animation: typewriter var(--typewriterSpeed)
+        steps(var(--typewriterCharacters)) 1s forwards,
+      blink 750ms steps(var(--typewriterCharacters)) infinite;
+}
+  
+@keyframes typewriter {
+    to {
+      left: 100%;
+    }
+}
+  
+@keyframes blink {
+    to {
+      background: transparent;
+    }
+}
+  
+@keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
